@@ -1,10 +1,20 @@
 <script lang="ts">
+	import PlayerList from "./PlayerList.svelte";
+
 	export let name: String;
+
+	let players = [
+		{id:'acunaro01',firstName:'Ronald', lastName:'Acuna', position:'OF'},
+		{id:'tatisfe02', firstName:'Fernando', lastName:'Tatis', position:'SS'},
+		{id:'sotoju01', firstName:'Juan', lastName:'Soto', position:'OF'}
+	]
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	FOO 
+	<PlayerList {players} />
 </main>
 
 <style>
