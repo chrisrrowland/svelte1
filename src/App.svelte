@@ -3,17 +3,21 @@
 
 	export let name: String;
 
+
+
 	let players = [
-		{id:'acunaro01',firstName:'Ronald', lastName:'Acuna', position:'OF'},
-		{id:'tatisfe02', firstName:'Fernando', lastName:'Tatis', position:'SS'},
-		{id:'sotoju01', firstName:'Juan', lastName:'Soto', position:'OF'}
+		{id:'acunaro01',firstName:'Ronald', lastName:'Acuna', position:'OF', team:'braves'},
+		{id:'tatisfe02', firstName:'Fernando', lastName:'Tatis', position:'SS', team:'padres'},
+		{id:'sotoju01', firstName:'Juan', lastName:'Soto', position:'OF', team:'nationals'},
+		{id:'troutmi01', firstName:'Mike', lastName:'Trout', position:'OF', team:'angels'},
+		{id:'cabremi01', firstName:'Miguel', lastName:'Cabrera', position:'DH', team:'tigers'}
 	]
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-	FOO 
+
 	<PlayerList {players} />
 </main>
 

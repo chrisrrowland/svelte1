@@ -1,20 +1,27 @@
 <script lang="ts">
     import type { Player } from "./types/Player";
     import PlayerListItem from "./PlayerListItem.svelte";
-    // import { Item, List } from "@smui/list"
+    import List, {Item} from '@smui/list';
     export let players: Player[];
 
     let selectionIndex = null
     let selectedId = null
+    let selectedItem = null
+
+    let selectItem = (id) => {
+        alert('selectItem '+id)
+        selectedItem = id
+    }
+
 </script>
 
 <style>
-    ul {
+    .demo-list {
 		/* width: 800px; */
 		/* text-align: left; */
 		margin-left: 25%;
 		margin-right: 25%;
-		background-color: #DDDDDD;
+		background-color: #DDDD00;
 	}
 </style>
 
@@ -22,10 +29,10 @@
     <div>No players loaded</div>
 {:else}
 <div>
-    <ul>
+    <List class="demo-list" twoLine avatarList singleSelection bind:selectedIndex={selectionIndex}>
         {#each players as player}
-            <PlayerListItem  {...player}/>
+            <PlayerListItem on:SMUI:action={() => selectItem(player.id)} {...player} selectedItem={selectedItem}/>
         {/each}
-    </ul>
+    </List>
 </div>
 {/if}
