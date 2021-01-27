@@ -16,20 +16,19 @@
 </script>
 
 <style>
-    .demo-list {
-		/* width: 800px; */
-		/* text-align: left; */
+    .list-container {
+		text-align: left;
 		margin-left: 25%;
 		margin-right: 25%;
-		background-color: #DDDD00;
+		background-color: #EEEEEE;
 	}
 </style>
 
 {#if players.length<1}
     <div>No players loaded</div>
 {:else}
-<div>
-    <List class="demo-list" twoLine avatarList singleSelection bind:selectedIndex={selectionIndex}>
+<div class="list-container">
+    <List twoLine avatarList singleSelection bind:selectedIndex={selectionIndex}>
         {#each players as player}
             <PlayerListItem on:SMUI:action={() => selectItem(player.id)} {...player} selectedItem={selectedItem}/>
         {/each}
