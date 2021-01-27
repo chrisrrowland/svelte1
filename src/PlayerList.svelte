@@ -4,13 +4,15 @@
     import List, {Item} from '@smui/list';
     export let players: Player[];
 
+    export let onSelect: Function;
+
     let selectionIndex = null
     let selectedId = null
     let selectedItem = null
 
     let selectItem = (id) => {
-        alert('selectItem '+id)
         selectedItem = id
+        onSelect(id)
     }
 
 </script>
@@ -30,7 +32,7 @@
 <div class="list-container">
     <List twoLine avatarList singleSelection bind:selectedIndex={selectionIndex}>
         {#each players as player}
-            <PlayerListItem on:SMUI:action={() => selectItem(player.id)} {...player} selectedItem={selectedItem}/>
+            <PlayerListItem onSelect={selectItem} {...player} selectedItem={selectedItem}/>
         {/each}
     </List>
 </div>

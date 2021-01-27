@@ -8,8 +8,9 @@ import { get } from "svelte/store";
     export let lastName:String;
     export let position:String;
     export let team:String;
+    export let selectedItem:String;
 
-    export let selectedItem: String;
+    export let onSelect: Function;
 
     let logos = new Map<String,String>()
     logos.set("braves","Atlanta_Braves")
@@ -39,6 +40,11 @@ import { get } from "svelte/store";
     let openExternal = () => {
         window.open(url, '_blank')
     }
+
+    let handleSelection = (id) => {
+        selectedItem = id;
+        onSelect(id);
+    }
 </script>
 
 <style>
@@ -60,9 +66,8 @@ import { get } from "svelte/store";
 </style>
 <div class="outer-container" style="--primary-color: {primaryColor}; --secondary-color: {secondaryColor};">
     <div class="inner-container" style="background-image: url({logo}); background-repeat: no-repeat; background-position: right; background-size:75px  75px">
-        <Item selected={selectedItem && selectedItem === id}>
+        <Item selected={selectedItem && selectedItem === id} on:SMUI:action={() => onSelect(id)} >
             <Graphic style="background-image: url(https://via.placeholder.com/40x40.png?text={firstName.substring(0,1)+lastName.substring(0,1)}); color:{colors.get(team).primary}" />
-            <!-- <Graphic style="background-image: url({logo});" /> -->
             <Text>
                 <PrimaryText>{firstName} {lastName}</PrimaryText>
                 <SecondaryText>{position}</SecondaryText>
