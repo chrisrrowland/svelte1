@@ -1,5 +1,9 @@
 <script lang="ts">
+	// import {Player} from './types/Player'
+
+	import PlayerCard from "./PlayerCard.svelte";
 	import PlayerList from "./PlayerList.svelte";
+	import PlayerListItem from "./PlayerListItem.svelte";
 
 	export let name: String;
 	
@@ -7,11 +11,13 @@
 
 
 	let players = [
-		{id:'acunaro01',firstName:'Ronald', lastName:'Acuna', position:'OF', team:'braves'},
-		{id:'tatisfe02', firstName:'Fernando', lastName:'Tatis', position:'SS', team:'padres'},
-		{id:'sotoju01', firstName:'Juan', lastName:'Soto', position:'OF', team:'nationals'},
-		{id:'troutmi01', firstName:'Mike', lastName:'Trout', position:'OF', team:'angels'},
-		{id:'cabremi01', firstName:'Miguel', lastName:'Cabrera', position:'DH', team:'tigers'}
+		{id:'acunaro01', bpid:'105454', firstName:'Ronald', lastName:'Acuna', position:'OF', team:'braves'},
+		{id:'tatisfe02', bpid:'108651', firstName:'Fernando', lastName:'Tatis', position:'SS', team:'padres'},
+		{id:'sotoju01',  bpid:'107182', firstName:'Juan', lastName:'Soto', position:'OF', team:'nationals'},
+		{id:'troutmi01', bpid:'59432', firstName:'Mike', lastName:'Trout', position:'OF', team:'angels'},
+		{id:'cabremi01', bpid:'31483', firstName:'Miguel', lastName:'Cabrera', position:'DH', team:'tigers'},
+		{id:'ohtansh01', bpid:'111306', firstName:'Shohei', lastName:'Ohtani', position:'P/DH', team:'angels'}
+		
 	]
 
 	let selectedId: String = null;
@@ -20,7 +26,8 @@
 		selectedId = id;
 	}
 
-	$: stats = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=br&url=%2Fplayers%2Fa%2F"+{selectedId}+".shtml&div=div_batting_standard"
+	$: bpid = selectedId ? players.filter(p=>p.id===selectedId)[0].bpid : null;
+	// $: stats = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=br&url=%2Fplayers%2Fa%2F"+{selectedId}+".shtml&div=div_batting_standard"
 </script>
 
 
@@ -31,7 +38,7 @@
 	<PlayerList {players} onSelect={handleSelection}/>
 
 	{#if selectedId}
-		Selected Id: {selectedId}
+		<PlayerCard {...players.filter(p=>p.id===selectedId)[0]} bpid={bpid}></PlayerCard>
 	{/if}
 </main>
 
