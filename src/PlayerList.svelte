@@ -23,11 +23,13 @@
 		margin-left: 25%;
 		margin-right: 25%;
 		background-color: #EEEEEE;
+        padding-left:8px;
+        padding-right:8px;
 	}
 </style>
 
-{#if players.length<1}
-    <div>No players loaded</div>
+{#if !players || players.length<1}
+    <div>Loading...</div>
 {:else}
 <div class="list-container">
     <List twoLine avatarList singleSelection bind:selectedIndex={selectionIndex}>
