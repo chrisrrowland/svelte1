@@ -28,11 +28,6 @@ import type { PlayerPageInterface } from "./util/playerpage"
     let openExternal = () => {
         window.open(url, '_blank')
     }
-
-    let handleSelection = (id) => {
-        selectedItem = id;
-        onSelect(id);
-    }
 </script>
 
 <style>
