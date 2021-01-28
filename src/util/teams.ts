@@ -8,11 +8,11 @@ class Team {
     }
 }
 
-export const Atlanta_Braves = new Team("atl", "braves")
-export const Detroit_Tigers = new Team("det", "tigers")
-export const LosAngeles_Angels = new Team("laa", "angels")
-export const SanDiego_Padres = new Team("sdp", "padres")
-export const Washington_Nationals = new Team("was", "nationals")
+export const Atlanta_Braves = new Team("atl", "Braves")
+export const Detroit_Tigers = new Team("det", "Tigers")
+export const LosAngeles_Angels = new Team("laa", "Angels")
+export const SanDiego_Padres = new Team("sdp", "Padres")
+export const Washington_Nationals = new Team("was", "Nationals")
 
 
 
