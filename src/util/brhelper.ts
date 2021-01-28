@@ -6,7 +6,7 @@ const basePlayerPageUrl = "https://www.baseball-reference.com/players/$lastIniti
 export class BaseballReferenceHelper implements PlayerPageInterface{
     getPlayerPage(player:Player) : string {
         return basePlayerPageUrl
-            .replace("$lastInitial$", player.lastName.substring(0.1))
+            .replace("$lastInitial$", player.lastName.substring(0,1).toLowerCase())
             .replace("$brId$", player.id)
     }
 }
