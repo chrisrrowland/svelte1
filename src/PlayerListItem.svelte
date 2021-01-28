@@ -2,7 +2,8 @@
 import type { Player } from "./types/Player";
 import {Item, Graphic, Meta, PrimaryText, SecondaryText, Text} from '@smui/list';
 import { get } from "svelte/store";
-import { Logos } from "./util/logos"
+import type { LogosInterface } from "./util/logos"
+import { CapsInfoLogoHelper } from "./util/cilogohelper"
 import Team from "./util/teams"
 import Colors from "./util/colors"
 import { BaseballReferenceHelper } from "./util/brhelper";
@@ -13,11 +14,13 @@ import type { PlayerPageInterface } from "./util/playerpage"
     export let selectedItem:string;
 
     export let onSelect: Function;
-    
+
     const playerPageHelper:PlayerPageInterface = new BaseballReferenceHelper() 
     $: url = playerPageHelper.getPlayerPage( player )
 
-    $: logo = Logos.getLogoUrl(player.team)
+    const logHelper:LogosInterface = new CapsInfoLogoHelper();
+    $: logo = logHelper.getLogoUrl(player.team)
+
     $: primaryColor = Colors.getPrimary(player.team)
     $: secondaryColor = Colors.getSecondary(player.team)
     
