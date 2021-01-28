@@ -3,6 +3,7 @@
     import PlayerListItem from "./PlayerListItem.svelte";
     import List, {Item} from '@smui/list';
     export let players: Player[];
+    import { Stretch } from 'svelte-loading-spinners'
 
     export let onSelect: Function;
 
@@ -29,7 +30,7 @@
 </style>
 
 {#if !players || players.length<1}
-    <div>Loading...</div>
+    <Stretch size="72" color="#006400" unit="px" duration="0.5s"></Stretch>
 {:else}
 <div class="list-container">
     <List twoLine avatarList singleSelection bind:selectedIndex={selectionIndex}>
