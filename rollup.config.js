@@ -21,9 +21,9 @@ export default {
   },
   plugins: [
     svelte({
-	compilerOptions: {
-		dev: development
-	},
+      compilerOptions: {
+        dev: development
+      },
       extensions: ['.svelte'],
       preprocess: sveltePreprocessor(),
       emitCss: true
