@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Atlanta_Braves , Detroit_Tigers, LosAngeles_Angels, SanDiego_Padres, Washington_Nationals} from "./util/teams"
 
+	import { Player } from "./types/Player"
 	import PlayerCard from "./PlayerCard.svelte";
 	import PlayerList from "./PlayerList.svelte";
 	export let h1: string;
@@ -18,13 +19,12 @@
 		
 	]
 
-	let selectedId: string = null;
+	let selectedPlayer: Player = null;
 
-	let handleSelection = (id) => {
-		selectedId = id;
+	let handleSelection = (id:string) => {
+		selectedPlayer = players.filter(p=>p.id===id)[0];
 	}
 
-	$: bpid = selectedId ? players.filter(p=>p.id===selectedId)[0].bpid : null;
 	// $: stats = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=br&url=%2Fplayers%2Fa%2F"+{selectedId}+".shtml&div=div_batting_standard"
 </script>
 
@@ -35,8 +35,8 @@
 
 	<PlayerList {players} onSelect={handleSelection}/>
 
-	{#if selectedId}
-		<PlayerCard {...players.filter(p=>p.id===selectedId)[0]} bpid={bpid}></PlayerCard>
+	{#if selectedPlayer}
+		<PlayerCard player={selectedPlayer}></PlayerCard>
 	{/if}
 </main>
 
