@@ -1,7 +1,7 @@
 ![Sample image](svelte1.png)
 
 
-m## Install
+## Install
 
 ```
 npm install
