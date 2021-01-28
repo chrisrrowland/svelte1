@@ -1,12 +1,14 @@
-export class Player {
-    id: String
-    bpid: String
-    firstName: String
-    lastName: String
-    position: String
-    team: String
+import Team from "../util/teams"
 
-    constructor(id:String, bpid:String, firstName:String, lastName:String, position:String, team:String) {
+export class Player {
+    id: string
+    bpid: string
+    firstName: string
+    lastName: string
+    position: string
+    team: Team
+
+    constructor(id:string, bpid:string, firstName:string, lastName:string, position:string, team:Team) {
         this.id = id
         this.bpid = bpid
         this.firstName = firstName
