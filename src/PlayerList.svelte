@@ -32,7 +32,7 @@
 <div class="list-container">
     <List twoLine avatarList singleSelection bind:selectedIndex={selectionIndex}>
         {#each players as player}
-            <PlayerListItem onSelect={selectItem} {...player} selectedItem={selectedItem}/>
+            <PlayerListItem onSelect={selectItem} {player} selectedItem={selectedItem}/>
         {/each}
     </List>
 </div>

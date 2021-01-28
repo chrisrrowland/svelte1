@@ -1,5 +1,7 @@
 <script lang="ts">
 
+    import BaseballProspectusHelper from "./util/bphelper"
+    import type { HeadshotInterface } from "./util/headshot"
     import Card, {Content, Media, PrimaryAction} from "@smui/card"
     import Team from "./util/teams"
 
@@ -9,22 +11,20 @@
     export let position:string;
     export let team:Team;
 
-    $: headshotUrl = "https://legacy.baseballprospectus.com/card/images/headshot_"+bpid+".jpg"
+    const headshotHelper:HeadshotInterface = new BaseballProspectusHelper()
+
+    $: headshotUrl = headshotHelper.getHeadshotUrl(bpid)
 
 </script>
 
 <style>
     .card-container {
-		text-align: center;
-        margin: auto;
-        width: 50%;
-		/* margin-left: 25%;
-		margin-right: 25%; */
-        /* width: 500px; */
-		background-color: #EEEEEE;
-        /* align-content: center; */
-        justify-content: center;
-        align-items: center;
+		  text-align: center;
+      margin: auto;
+      width: 50%;
+		  background-color: #EEEEEE;
+      justify-content: center;
+      align-items: center;
 	}
 
 </style>

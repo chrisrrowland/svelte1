@@ -5,21 +5,21 @@ import { get } from "svelte/store";
 import { Logos } from "./util/logos"
 import Team from "./util/teams"
 import Colors from "./util/colors"
+import { BaseballReferenceHelper } from "./util/brhelper";
+import type { PlayerPageInterface } from "./util/playerpage"
 
-    export let id:string;
-    export let firstName:string;
-    export let lastName:string;
-    export let position:string;
-    export let team:Team;
+    export let player:Player;
+
     export let selectedItem:string;
 
     export let onSelect: Function;
+    
+    const playerPageHelper:PlayerPageInterface = new BaseballReferenceHelper() 
+    $: url = playerPageHelper.getPlayerPage( player )
 
-    $: url = 'https://www.baseball-reference.com/players/'+lastName.substring(0,1).toLowerCase()+'/'+id+'.shtml'
-    // $: logo = 'https://www.capsinfo.com/images/MLB_Team_Logos/'+logos.get(team)+'.png'
-    $: logo = Logos.getLogoUrl(team)
-    $: primaryColor = Colors.getPrimary(team)
-    $: secondaryColor = Colors.getSecondary(team)
+    $: logo = Logos.getLogoUrl(player.team)
+    $: primaryColor = Colors.getPrimary(player.team)
+    $: secondaryColor = Colors.getSecondary(player.team)
     
 
     let openExternal = () => {
@@ -51,11 +51,11 @@ import Colors from "./util/colors"
 </style>
 <div class="outer-container" style="--primary-color: {primaryColor}; --secondary-color: {secondaryColor};">
     <div class="inner-container" style="background-image: url({logo}); background-repeat: no-repeat; background-position: right; background-size:75px  75px">
-        <Item selected={selectedItem && selectedItem === id} on:SMUI:action={() => onSelect(id)} >
-            <Graphic style="background-image: url(https://via.placeholder.com/40x40.png?text={firstName.substring(0,1)+lastName.substring(0,1)}); color:{Colors.getPrimary(team)}" />
+        <Item selected={selectedItem && selectedItem === player.id} on:SMUI:action={() => onSelect(player.id)} >
+            <Graphic style="background-image: url(https://via.placeholder.com/40x40.png?text={player.firstName.substring(0,1)+player.lastName.substring(0,1)}); color:{Colors.getPrimary(player.team)}" />
             <Text>
-                <PrimaryText>{firstName} {lastName}</PrimaryText>
-                <SecondaryText>{position}</SecondaryText>
+                <PrimaryText>{player.firstName} {player.lastName}</PrimaryText>
+                <SecondaryText>{player.position}</SecondaryText>
             </Text>
                 <Graphic class="material-icons"  on:click={openExternal}>launch</Graphic>
         </Item>
