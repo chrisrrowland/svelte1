@@ -1,0 +1,21 @@
+.michigan-theme {
+     min-height: 100%;
+     min-width: 100%;
+     background-color: #FFF;
+     color: #fff;
+     @import "@material/theme/color-palette";
+  
+     $mdc-theme-primary: #00274C;
+     $mdc-theme-secondary: #2C6496;
+     $mdc-theme-background: #FFF;
+     $mdc-theme-surface: #000;
+     $mdc-theme-error: #D84315;
+  
+     @import "@material/theme/variables";
+     @each $style in map-keys($mdc-theme-property-values) {
+       --mdc-theme-#{$style}: #{map-get($mdc-theme-property-values, $style)};
+     }
+  
+     @import "@smui/button/style";
+//     @import "@smui/fab/style";
+   }

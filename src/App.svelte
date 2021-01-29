@@ -1,39 +1,52 @@
 <script lang="ts">
-	import type { PlayersInterface } from "./util/playersource"
-	import { StaticPlayersSource } from "./util/playerssourcestatic"
+	import Tab from "@smui/tab"
+	import TabBar from "@smui/tab-bar" 
+	import AddMultipleSections from "./AddMultipleSections.svelte"
+	import AddMultipleGroups from "./AddMultipleGroups.svelte"
+	import Players from "./Players.svelte"
+	import { Icon, Label } from "@smui/common"
 
-	import { Player } from "./types/Player"
-	import PlayerCard from "./PlayerCard.svelte";
-	import PlayerList from "./PlayerList.svelte";
-	export let h1: string;
-	
-	const playersSource:PlayersInterface = new StaticPlayersSource()
-	let players: Player[] = null;
-	playersSource.getPlayers()
-	.then(result=>{
-		players = result;
-	})
+	let selectedTab =  null
+	let tabs = [
+		{
+			key: 0,
+			icon: "post_add",
+			label: "Add multiple sections",
+			component:AddMultipleSections
+		},
+		{
+			key: 1,
+			icon: "group_add",
+			label: "Add multiple groups",
+			component: AddMultipleGroups
+		},
+		{
+			key: 2,
+			icon: "sports_baseball",
+			label: "Players",
+			component: Players
+		}
+	]
 
-
-	let selectedPlayer: Player = null;
-
-	let handleSelection = (id:string) => {
-		selectedPlayer = players.filter(p=>p.id===id)[0];
-	}
-
-	// $: stats = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=br&url=%2Fplayers%2Fa%2F"+{selectedId}+".shtml&div=div_batting_standard"
 </script>
 
 
 <main>
-	<h1>{h1}</h1>
-	<p>This is some baseball junk</p>
+	<div class="michigan-theme">
+		<TabBar tabs={tabs} let:tab key={tab=>tab.key} bind:active={selectedTab}>
+		  <Tab {tab} on>
+			<Icon class="material-icons">{tab.icon}</Icon>
+			<Label>{tab.label}</Label>
+		  </Tab>
+		</TabBar>
 
-	<PlayerList {players} onSelect={handleSelection}/>
-
-	{#if selectedPlayer}
-		<PlayerCard player={selectedPlayer}></PlayerCard>
+	</div>
+	{#if selectedTab}
+		hello
+		<svelte:component this={tabs[selectedTab.key].component}/>
 	{/if}
+
+	
 </main>
 
 <style>
