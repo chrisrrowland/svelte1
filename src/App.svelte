@@ -42,7 +42,6 @@
 
 	</div>
 	{#if selectedTab}
-		hello
 		<svelte:component this={tabs[selectedTab.key].component}/>
 	{/if}
 
