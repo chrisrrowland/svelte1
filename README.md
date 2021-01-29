@@ -1,3 +1,5 @@
+[Svelte](https://svelte.dev/) + [Typescript](https://www.typescriptlang.org/) + [Svelte Material UI](https://sveltematerialui.com/)
+
 ![Sample image](svelte1.png)
 
 
