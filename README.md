@@ -12,3 +12,7 @@ npm install
 ```
 npm run dev
 ```
+
+## Material Icons
+
+Use icon names from [here](https://material.io/resources/icons/?style=baseline)
