@@ -2,7 +2,7 @@
 	import Tab from "@smui/tab"
 	import TabBar from "@smui/tab-bar" 
 	import AddMultipleSections from "./AddMultipleSections.svelte"
-	import AddMultipleGroups from "./AddMultipleGroups.svelte"
+	import AddMultipleGroups from "./AddMultipleGroups/AddMultipleGroups.svelte"
 	import Players from "./Players.svelte"
 	import { Icon, Label } from "@smui/common"
 
